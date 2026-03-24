@@ -1,0 +1,64 @@
+name: Vercel Deployment Status
+
+on:
+  repository_dispatch:
+    types:
+      - vercel.deployment.pending
+      - vercel.deployment.ready
+      - vercel.deployment.success
+      - vercel.deployment.error
+      - vercel.deployment.failed
+      - vercel.deployment.canceled
+      - vercel.deployment.skipped
+      - vercel.deployment.ignored
+      - vercel.deployment.promoted
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print event details
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_ACTION: ${{ github.event.action }}
+          DEPLOYMENT_ID: ${{ github.event.client_payload.deploymentId }}
+          DEPLOYMENT_URL: ${{ github.event.client_payload.url }}
+          DEPLOYMENT_ENVIRONMENT: ${{ github.event.client_payload.environment }}
+          DEPLOYMENT_PROJECT: ${{ github.event.client_payload.projectName }}
+          DEPLOYMENT_BRANCH: ${{ github.event.client_payload.gitBranch }}
+          DEPLOYMENT_SHA: ${{ github.event.client_payload.commitSha }}
+        run: |
+          echo "event_name=$EVENT_NAME"
+          echo "event_action=$EVENT_ACTION"
+          echo "deployment_id=$DEPLOYMENT_ID"
+          echo "deployment_url=$DEPLOYMENT_URL"
+          echo "deployment_environment=$DEPLOYMENT_ENVIRONMENT"
+          echo "deployment_project=$DEPLOYMENT_PROJECT"
+          echo "deployment_branch=$DEPLOYMENT_BRANCH"
+          echo "deployment_sha=$DEPLOYMENT_SHA"
+
+      - name: Write workflow summary
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_ACTION: ${{ github.event.action }}
+          DEPLOYMENT_ID: ${{ github.event.client_payload.deploymentId }}
+          DEPLOYMENT_URL: ${{ github.event.client_payload.url }}
+          DEPLOYMENT_ENVIRONMENT: ${{ github.event.client_payload.environment }}
+          DEPLOYMENT_PROJECT: ${{ github.event.client_payload.projectName }}
+          DEPLOYMENT_BRANCH: ${{ github.event.client_payload.gitBranch }}
+          DEPLOYMENT_SHA: ${{ github.event.client_payload.commitSha }}
+        run: |
+          {
+            echo "## Vercel Deployment Event"
+            echo
+            echo "- Event: ${EVENT_NAME}"
+            echo "- Action: ${EVENT_ACTION:-manual}"
+            echo "- Project: ${DEPLOYMENT_PROJECT:-car-service}"
+            echo "- Environment: ${DEPLOYMENT_ENVIRONMENT:-n/a}"
+            echo "- Branch: ${DEPLOYMENT_BRANCH:-n/a}"
+            echo "- Commit: ${DEPLOYMENT_SHA:-n/a}"
+            echo "- Deployment ID: ${DEPLOYMENT_ID:-n/a}"
+            echo "- URL: ${DEPLOYMENT_URL:-n/a}"
+          } >> "$GITHUB_STEP_SUMMARY"
