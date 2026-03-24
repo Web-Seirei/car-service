@@ -50,8 +50,9 @@ export default function Home() {
                   Garage service that feels as sharp as the drive after pickup.
                 </h1>
                 <p className="max-w-2xl text-lg leading-8 text-[#43516a] sm:text-xl">
-                  Diagnostics, maintenance, and rapid repairs in one organized flow.
-                  Book the slot, get real updates, approve the estimate, and leave with a car that feels sorted.
+                  Diagnostics, maintenance, and rapid repairs in one organized flow. Book
+                  the slot, get real updates, approve the estimate, and leave with a car
+                  that feels sorted.
                 </p>
               </div>
             </div>
@@ -65,7 +66,8 @@ export default function Home() {
                 Same-day diagnostics for urgent issues.
               </p>
               <p className="text-sm leading-7 text-[#c3ccdb]">
-                For launch, this project ships with Next.js 16, GitHub CI, and a clean path to Vercel production.
+                For launch, this project ships with Next.js 16, GitHub CI, and a clean
+                path to Vercel production.
               </p>
             </div>
           </div>
@@ -112,7 +114,8 @@ export default function Home() {
                 </h2>
               </div>
               <p className="max-w-sm text-sm leading-7 text-[#c3ccdb]">
-                The page is intentionally static and marketing-focused, while the repo is ready for full Next.js runtime deployment on Vercel.
+                The page is intentionally static and marketing-focused, while the repo is
+                ready for full Next.js runtime deployment on Vercel.
               </p>
             </div>
 
@@ -168,7 +171,9 @@ export default function Home() {
                 Next.js 16, GitHub CI, Vercel-ready deployment flow.
               </h2>
               <p className="max-w-3xl text-base leading-8 text-[#4a556a]">
-                This repository is prepared for a straightforward production handoff: code lives in GitHub, CI validates every push, and Vercel can attach directly to the repository for automatic deployments and a public URL.
+                This repository is prepared for a straightforward production handoff: code
+                lives in GitHub, CI validates every push, and Vercel can attach directly
+                to the repository for automatic deployments and a public URL.
               </p>
             </div>
             <div className="rounded-[1.5rem] bg-[#f3ece3] px-5 py-4 font-[family-name:var(--font-jetbrains-mono)] text-sm leading-7 text-[#142033]">
