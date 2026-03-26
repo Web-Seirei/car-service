@@ -1,15 +1,93 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f3efe8;
-  --foreground: #142033;
+  /* Backgrounds */
+  --bg-page: #f3efe8;
+  --bg-card: #ffffff;
+  --bg-dark: #1c1c1c;
+  --bg-dark-alt: #292420;
+
+  /* Accent (Cinnabar Red) */
+  --accent: #e84b3d;
+  --accent-hover: #d5301f;
+  --accent-light: #fef2f1;
+  --accent-dark: #7c211a;
+
+  /* Text */
+  --text-primary: #292420;
+  --text-secondary: #6f6053;
+  --text-muted: #958470;
+  --text-on-dark: #f3efe8;
+
+  /* Borders */
+  --border: #d9d1c4;
+  --border-dark: rgba(255, 255, 255, 0.12);
+
+  /* Semantic */
+  --success: #3d8b37;
+
+  /* Cinnabar Red scale */
+  --primary-50: #fef2f1;
+  --primary-100: #fde3e1;
+  --primary-200: #fcc9c5;
+  --primary-300: #f9a59e;
+  --primary-400: #f47268;
+  --primary-500: #e84b3d;
+  --primary-600: #d5301f;
+  --primary-700: #b32417;
+  --primary-800: #942117;
+  --primary-900: #7c211a;
+  --primary-950: #430d08;
+
+  /* Neutral (warm stone) scale */
+  --neutral-50: #f3efe8;
+  --neutral-100: #ebe6dd;
+  --neutral-200: #d9d1c4;
+  --neutral-300: #c2b7a5;
+  --neutral-400: #a89a85;
+  --neutral-500: #958470;
+  --neutral-600: #887663;
+  --neutral-700: #6f6053;
+  --neutral-800: #5d5147;
+  --neutral-900: #4e443e;
+  --neutral-950: #292420;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-space-grotesk);
+  --color-background: var(--bg-page);
+  --color-foreground: var(--text-primary);
+  --color-card: var(--bg-card);
+  --color-card-foreground: var(--text-primary);
+  --color-primary: var(--accent);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--neutral-100);
+  --color-secondary-foreground: var(--text-primary);
+  --color-muted: var(--neutral-100);
+  --color-muted-foreground: var(--text-muted);
+  --color-accent: var(--accent-light);
+  --color-accent-foreground: var(--accent);
+  --color-destructive: var(--accent);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--accent);
+  --color-bg-page: var(--bg-page);
+  --color-bg-card: var(--bg-card);
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-dark-alt: var(--bg-dark-alt);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-on-dark: var(--text-on-dark);
+  --color-accent-main: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-light: var(--accent-light);
+  --color-accent-dark: var(--accent-dark);
+  --color-success: var(--success);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
+  --radius-lg: 0.5rem;
+  --radius-md: calc(var(--radius-lg) - 2px);
+  --radius-sm: calc(var(--radius-lg) - 4px);
 }
 
 * {
@@ -17,18 +95,19 @@
 }
 
 html {
-  background: var(--background);
+  background: var(--bg-page);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-space-grotesk), sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-inter), sans-serif;
   text-rendering: optimizeLegibility;
 }
 
 a,
 button {
+  cursor: pointer;
   transition:
     color 160ms ease,
     background-color 160ms ease,
@@ -37,6 +116,13 @@ button {
 }
 
 ::selection {
-  background: rgba(184, 93, 37, 0.22);
-  color: #142033;
+  background: rgba(232, 75, 61, 0.22);
+  color: var(--text-primary);
+}
+
+.bg-bg-dark ::selection,
+[class*="bg-[var(--bg-dark)"] ::selection,
+section[class*="bg-bg-dark"] ::selection {
+  background: rgba(232, 75, 61, 0.45);
+  color: #ffffff;
 }
