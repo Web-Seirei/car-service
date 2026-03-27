@@ -73,7 +73,7 @@ export function ReviewsSection() {
           <button
             onClick={scrollPrev}
             disabled={!canScrollPrev}
-            className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-white/10 bg-[var(--bg-dark-alt)] p-2 text-[var(--text-on-dark)] transition-colors hover:bg-white/10 disabled:opacity-30 lg:-left-12 lg:flex"
+            className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-white/10 bg-[var(--bg-dark)] p-2 text-[var(--text-on-dark)] transition-colors hover:bg-white/10 disabled:opacity-30 lg:-left-12 lg:flex"
             aria-label="Предыдущий отзыв"
           >
             <ChevronLeft size={20} />
@@ -81,7 +81,7 @@ export function ReviewsSection() {
           <button
             onClick={scrollNext}
             disabled={!canScrollNext}
-            className="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-white/10 bg-[var(--bg-dark-alt)] p-2 text-[var(--text-on-dark)] transition-colors hover:bg-white/10 disabled:opacity-30 lg:-right-12 lg:flex"
+            className="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-white/10 bg-[var(--bg-dark)] p-2 text-[var(--text-on-dark)] transition-colors hover:bg-white/10 disabled:opacity-30 lg:-right-12 lg:flex"
             aria-label="Следующий отзыв"
           >
             <ChevronRight size={20} />
@@ -95,7 +95,7 @@ export function ReviewsSection() {
                   key={review.name}
                   className="min-w-0 shrink-0 basis-full pl-4 sm:basis-1/2 lg:basis-1/3"
                 >
-                  <div className="h-full rounded-xl border border-white/10 bg-[var(--bg-dark-alt)] p-6">
+                  <div className="h-full rounded-xl border border-white/10 bg-[var(--bg-dark)] p-6">
                     <span className="font-serif text-4xl leading-none text-[var(--accent)]/30">
                       &ldquo;
                     </span>

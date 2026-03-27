@@ -83,14 +83,14 @@ export function Header() {
             onClick={scrollToBooking}
             className="bg-accent-main text-white hover:bg-accent-hover"
           >
-            Записаться на сервис
+            Записаться
           </Button>
         </div>
 
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu size={24} />
+              <Menu className="!size-6" />
               <span className="sr-only">Открыть меню</span>
             </Button>
           </SheetTrigger>
