@@ -2,6 +2,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { reviews, services } from "@/lib/data";
+import { SITE } from "@/lib/constants";
 import "./globals.css";
 
 const inter = Inter({
@@ -15,16 +17,29 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Автосервис BIP-MOBILE в Витебске - ремонт автомобилей с гарантией",
+  metadataBase: new URL(SITE.url),
+  title: "Ремонт авто в Витебске — СТО BIP-MOBILE | С 2015 года",
   description:
-    "СТО BIP-MOBILE - ремонт легковых автомобилей и микроавтобусов всех марок в Витебске. Тормоза, подвеска, двигатель, трансмиссия. Прозрачные цены, гарантия на работы. Запись по телефону +375 29 599-01-69.",
+    "Ремонт легковых авто и микроавтобусов всех марок. Подвеска, двигатель, тормоза, ГРМ, масло. Гарантия на работы, прозрачные цены. Запишитесь онлайн!",
+  keywords:
+    "автосервис витебск, ремонт авто витебск, сто витебск, ремонт подвески, ремонт двигателя, замена масла, шиномонтаж, тормоза, ГРМ, BIP-MOBILE",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Автосервис BIP-MOBILE - ремонт авто в Витебске",
+    siteName: "BIP-MOBILE",
+    title: "Автосервис BIP-MOBILE — ремонт авто всех марок в Витебске",
     description:
-      "Ремонт легковых автомобилей и микроавтобусов всех марок. Прозрачные цены, гарантия, индивидуальный подход.",
+      "Профессиональный ремонт с 2015 года. 10+ лет опыта, гарантия на работы, прозрачные цены. Запишитесь на диагностику!",
     type: "website",
     locale: "ru_BY",
-    url: "https://car-service-steel.vercel.app/",
+    url: SITE.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Автосервис BIP-MOBILE — ремонт авто всех марок в Витебске",
+    description:
+      "Профессиональный ремонт с 2015 года. 10+ лет опыта, гарантия на работы, прозрачные цены. Запишитесь на диагностику!",
   },
   robots: {
     index: true,
@@ -32,13 +47,15 @@ export const metadata: Metadata = {
   },
 };
 
+const avgRating = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AutoRepair",
   name: "BIP-MOBILE",
   description:
     "Станция технического обслуживания автомобилей. Ремонт легковых автомобилей и микроавтобусов всех марок.",
-  url: "https://car-service-steel.vercel.app/",
+  url: SITE.url,
   telephone: "+375295990169",
   email: "lihomans@mail.ru",
   address: {
@@ -62,6 +79,35 @@ const jsonLd = {
   ],
   priceRange: "$$",
   sameAs: ["https://www.instagram.com/bip.mobile"],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: avgRating.toFixed(1),
+    bestRating: "5",
+    worstRating: "1",
+    reviewCount: reviews.length.toString(),
+  },
+  review: reviews.map((r) => ({
+    "@type": "Review",
+    author: { "@type": "Person", name: r.name },
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: r.rating.toString(),
+      bestRating: "5",
+    },
+    reviewBody: r.text,
+  })),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Услуги автосервиса",
+    itemListElement: services.map((s) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: s.title,
+        description: s.description,
+      },
+    })),
+  },
 };
 
 export default function RootLayout({
