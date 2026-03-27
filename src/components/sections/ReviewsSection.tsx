@@ -35,7 +35,7 @@ export function ReviewsSection() {
 
   useEffect(() => {
     if (!emblaApi) return;
-    onSelect();
+
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
     return () => {
